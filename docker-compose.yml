@@ -5,25 +5,24 @@ services:
     build: .
     ports:
       - "5000:5000"
-    volumes:
-      - ./app:/app
-    environment:
-      - FLASK_APP=app
-      - FLASK_ENV=development
-    command: flask run --host=0.0.0.0
     depends_on:
       - db
+    environment:
+      - DATABASE_URL=postgresql://postgres:password@db:5432/cloudapp
+    networks:
+      - app-network
 
   db:
     image: postgres:13
+    restart: always
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: cloudapp
     ports:
       - "5432:5432"
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+    networks:
+      - app-network
 
-volumes:
-  pgdata:
+networks:
+  app-network:
