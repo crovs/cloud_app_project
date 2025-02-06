@@ -1,15 +1,13 @@
-# Use Python image
 FROM python:3.10
 
-# Set working directory
 WORKDIR /app
 
-# Copy dependencies and install
+# Copy and install dependencies
 COPY app/requirements.txt .
-RUN pip install -r requirements.txt
+RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
 
-# Copy rest of the code
+# Copy the rest of the application
 COPY app/ .
 
-# Run the app
+# Run the Flask app
 CMD ["flask", "run", "--host=0.0.0.0"]

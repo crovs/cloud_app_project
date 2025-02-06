@@ -8,8 +8,9 @@ services:
     volumes:
       - ./app:/app
     environment:
-      - FLASK_APP=__init__.py
+      - FLASK_APP=app
       - FLASK_ENV=development
+    command: flask run --host=0.0.0.0
     depends_on:
       - db
 
