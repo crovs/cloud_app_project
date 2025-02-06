@@ -1,25 +1,24 @@
 from flask import Flask, request, jsonify, session, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
-from .routes import some_blueprint  # or your route files
+from .routes import some_blueprint 
 from werkzeug.security import generate_password_hash, check_password_hash
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:password@db:5432/cloudapp'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SECRET_KEY'] = 'secretkey'
 
-db = SQLAlchemy(app)
+db = SQLAlchemy()
 
 def create_app():
     app = Flask(__name__)
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://username:password@db:5432/your_db_name'
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     
-    # Configs, Database setup, etc.
-    app.config.from_object('config.Config')  # if using config.py
+    db.init_app(app)  
 
-    # Register Blueprints
+    from .routes import some_blueprint
     app.register_blueprint(some_blueprint)
 
     return app
+
+app = create_app()  
 
 # User Model
 class User(db.Model):

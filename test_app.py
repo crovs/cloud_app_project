@@ -1,7 +1,9 @@
 import unittest
 import os
 
-from app import app, db, User, Task
+from cloud_app import app, db
+from cloud_app.models import User, Task
+
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
 app.config['TESTING'] = True
