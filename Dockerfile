@@ -1,18 +1,24 @@
-FROM python:3.10
+FROM python:3.10-slim
 
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+# Set working directory
 WORKDIR /app
 
+# Install dependencies
+COPY requirements.txt /app/
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt
 
-ENV FLASK_APP=app:create_app
-ENV FLASK_RUN_HOST=0.0.0.0
+# Copy the project files
+COPY . /app/
 
-# Upgrade pip and install dependencies with no cache
-COPY app/requirements.txt .
-RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
-
-# Copy the rest of the application
-COPY app/ .
+# Expose the port
+EXPOSE 5000
 
 # Run the Flask app
-CMD ["flask", "run", "--host=0.0.0.0"]
+CMD ["flask", "run", "--host=0.0.0.0", "--app=cloud_app"]
+
 
