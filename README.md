@@ -2,7 +2,8 @@
 
 ## Overview
 The **Cloud App Project** is a Flask-based web application designed for user authentication and task management. Users can register, log in, and manage their tasks seamlessly. The application is containerized using Docker for easy deployment and includes PostgreSQL for data storage.
-#Students Involved: Ahmet Emin Yada  , 54956
+
+# Students Involved: Ahmet Emin Yada  , 54956
 
 ## Features
 - User Registration & Login
