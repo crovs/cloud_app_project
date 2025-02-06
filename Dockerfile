@@ -2,7 +2,7 @@ FROM python:3.10
 
 WORKDIR /app
 
-# Copy and install dependencies
+# Upgrade pip and install dependencies with no cache
 COPY app/requirements.txt .
 RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
 
