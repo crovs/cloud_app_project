@@ -88,10 +88,3 @@ Visit `http://localhost:5000/` in your browser.
 docker-compose down
 ```
 
-## License
-This project is licensed under the MIT License.
-
----
-
-**Happy Coding!** 🚀
-
