@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from werkzeug.utils import quote as url_quote
+from urllib.parse import quote as url_quote
 
 
 
